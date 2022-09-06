@@ -2,8 +2,8 @@ import re
 
 def del_uid(line):
     '''
-    Deletes 32 character (UID) after the file name
-    Replace %20 with space
+    Deletes 32 character UID after the file name
+    Replace "%20" with space
     Replace space+slash with just slash
     '''
     
@@ -19,6 +19,10 @@ def del_uid(line):
 
 
 def del_symbols(line):
+    '''
+    Delete all symbols that are not word or whitespace character
+    It is needed to avoid illegal characters in filenames
+    '''
     regexSymbols = re.compile('[^\w\s]')
     line = regexSymbols.sub(' ', line).strip()
     return re.sub(' {2,}', ' ', line)
